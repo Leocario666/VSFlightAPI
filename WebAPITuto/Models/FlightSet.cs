@@ -21,6 +21,8 @@ namespace WebAPITuto.Models
         public DateTime Date { get; set; }
         public short Seats { get; set; }
         public int PilotId { get; set; }
+        public int Price { get; set; }
+        public int RemainingSeats { get; set; }
 
         [ForeignKey(nameof(PilotId))]
         [InverseProperty(nameof(PilotSet.FlightSet))]

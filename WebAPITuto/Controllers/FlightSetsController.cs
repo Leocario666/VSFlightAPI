@@ -24,6 +24,8 @@ namespace WebAPITuto.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FlightSet>>> GetFlightSet()
         {
+            
+            
             return await _context.FlightSet.ToListAsync();
         }
 
@@ -37,6 +39,28 @@ namespace WebAPITuto.Controllers
             {
                 return NotFound();
             }
+
+       
+                var days = (flightSet.Date - DateTime.Now).TotalDays;
+
+                if (flightSet.RemainingSeats > (flightSet.Seats * 50 / 100) && days < 30)
+                {
+                    flightSet.Price = flightSet.Price * 70 / 100;
+                }
+                else
+                {
+                    if (flightSet.RemainingSeats > (flightSet.Seats * 80 / 100) && days < 60)
+                    { 
+                        flightSet.Price = flightSet.Price * 80 / 100;
+                    }
+                    else
+                    {
+                        if (flightSet.RemainingSeats < (flightSet.Seats * 20 / 100))
+                        {
+                            flightSet.Price = flightSet.Price * 150 / 100;
+                        }
+                    }
+                }
 
             return flightSet;
         }
