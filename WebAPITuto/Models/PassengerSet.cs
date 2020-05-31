@@ -17,7 +17,7 @@ namespace WebAPITuto.Models
         public int PersonId { get; set; }
         public string Surname { get; set; }
         public string GivenName { get; set; }
-        public int Weight { get; set; }
+        
 
         [InverseProperty("Passenger")]
         public virtual ICollection<BookingSet> BookingSet { get; set; }

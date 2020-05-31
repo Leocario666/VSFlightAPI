@@ -8,10 +8,12 @@ namespace WebAPITuto.Models
     public partial class BookingSet
     {
         [Key]
+        public int BookingId { get; set; }
+        
         public int FlightNo { get; set; }
-        [Key]
-        [Column("PassengerID")]
+ 
         public int PassengerId { get; set; }
+        public int Price { get; set; }
 
         [ForeignKey(nameof(FlightNo))]
         [InverseProperty(nameof(FlightSet.BookingSet))]

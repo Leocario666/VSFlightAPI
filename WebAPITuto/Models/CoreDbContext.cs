@@ -32,10 +32,10 @@ namespace WebAPITuto.Models
         {
             modelBuilder.Entity<BookingSet>(entity =>
             {
-                entity.HasKey(e => new { e.FlightNo, e.PassengerId });
+                entity.HasKey(e => new { e.BookingId });
 
                 entity.HasIndex(e => e.PassengerId);
-
+                
                 entity.HasOne(d => d.FlightNoNavigation)
                     .WithMany(p => p.BookingSet)
                     .HasForeignKey(d => d.FlightNo)
