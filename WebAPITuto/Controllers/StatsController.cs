@@ -110,7 +110,7 @@ namespace WebAPITuto.Controllers
                 {
                      if(ouaf.PersonId == miaou.PassengerId)
                     {
-                        s.GiveName = ouaf.GivenName;
+                        s.GivenName = ouaf.GivenName;
                        
                     }
                 }

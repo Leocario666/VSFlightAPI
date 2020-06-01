@@ -7,7 +7,7 @@ namespace WebAPITuto.Models
 {
     public class Statistics
     {
-        public string GiveName { get; set; }
+        public string GivenName { get; set; }
         public int FlightNo { get; set; }
         public int Price { get; set; }
     }
