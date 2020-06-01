@@ -24,19 +24,13 @@ namespace WebAPITuto.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookingSet>>> GetBookingSet()
         {
-            /*int cpt = 0;
-            List<FlightSet> list = new List<FlightSet>();
-            var flightlist = await _context.FlightSet.ToListAsync();
-            var booklist = await _context.BookingSet.ToListAsync();
-            foreach(var f in booklist)
-            {
-                if(f.FlightNo == 1)
-                {
-                    list.Add(flightlist[cpt]);
-                }
-                cpt++;
-            }*/
+            return await _context.BookingSet.ToListAsync();
+        }
 
+        // GET: api/MIAOU
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BookingSet>>> GetBookingSets()
+        {
             return await _context.BookingSet.ToListAsync();
         }
 
