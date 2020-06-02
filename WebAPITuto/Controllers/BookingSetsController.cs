@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using WebAPITuto.Models;
 
 namespace WebAPITuto.Controllers
@@ -23,13 +24,6 @@ namespace WebAPITuto.Controllers
         // GET: api/BookingSets
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookingSet>>> GetBookingSet()
-        {
-            return await _context.BookingSet.ToListAsync();
-        }
-
-        // GET: api/MIAOU
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingSet>>> GetBookingSets()
         {
             return await _context.BookingSet.ToListAsync();
         }
@@ -89,11 +83,13 @@ namespace WebAPITuto.Controllers
             _context.BookingSet.Add(bookingSet);
             try
             {
+                
                 await _context.SaveChangesAsync();
+                
             }
             catch (DbUpdateException)
             {
-                if (BookingSetExists(bookingSet.FlightNo))
+                if (BookingSetExists(bookingSet.BookingId))
                 {
                     return Conflict();
                 }
@@ -102,8 +98,9 @@ namespace WebAPITuto.Controllers
                     throw;
                 }
             }
-
-            return CreatedAtAction("GetBookingSet", new { id = bookingSet.FlightNo }, bookingSet);
+            
+            
+            return CreatedAtAction("GetBookingSet", new { id = bookingSet.BookingId }, bookingSet);
         }
 
         // DELETE: api/BookingSets/5
@@ -124,7 +121,7 @@ namespace WebAPITuto.Controllers
 
         private bool BookingSetExists(int id)
         {
-            return _context.BookingSet.Any(e => e.FlightNo == id);
+            return _context.BookingSet.Any(e => e.BookingId == id);
         }
     }
 }

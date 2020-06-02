@@ -57,7 +57,7 @@ namespace WebAPITuto.Controllers
             var q = from a in dd
                     where a.Destination.Equals(Destination)
                     select a;
-            int finalvalue = 0;
+            
             List<BookingSet> list = new List<BookingSet>();
             foreach(BookingSet b in cc)
             {

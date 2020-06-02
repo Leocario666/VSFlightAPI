@@ -103,7 +103,8 @@ namespace WebAPITuto.Controllers
         [HttpPost]
         public async Task<ActionResult<FlightSet>> PostFlightSet(FlightSet flightSet)
         {
-            _context.FlightSet.Add(flightSet);
+            flightSet.RemainingSeats -= 1;
+            _context.FlightSet.Update(flightSet);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFlightSet", new { id = flightSet.FlightNo }, flightSet);
