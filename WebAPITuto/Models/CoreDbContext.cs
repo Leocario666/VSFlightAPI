@@ -24,7 +24,7 @@ namespace WebAPITuto.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\dalme\\WWWings_2020Step1.mdf;Integrated Security=True;Connect Timeout=30");
+                optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\VsFlightDB.mdf;Integrated Security=True;Connect Timeout=30");
             }
         }
 

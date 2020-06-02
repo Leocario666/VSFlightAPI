@@ -27,13 +27,6 @@ namespace WebAPITuto.Controllers
             return await _context.BookingSet.ToListAsync();
         }
 
-        // GET: api/MIAOU
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingSet>>> GetBookingSets()
-        {
-            return await _context.BookingSet.ToListAsync();
-        }
-
         // GET: api/BookingSets/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BookingSet>> GetBookingSet(int id)
