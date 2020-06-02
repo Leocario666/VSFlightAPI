@@ -52,14 +52,14 @@ namespace WebAPITuto.Controllers
         public async Task<float> GetAveragePriceForDestination([FromRoute] String Destination)
         {
             float average = 0;
-            var cc = await _context.BookingSet.ToListAsync();
-            var dd = await _context.FlightSet.ToListAsync();
-            var q = from a in dd
+            var BookingList = await _context.BookingSet.ToListAsync();
+            var FlightList = await _context.FlightSet.ToListAsync();
+            var q = from a in FlightList
                     where a.Destination.Equals(Destination)
                     select a;
             
             List<BookingSet> list = new List<BookingSet>();
-            foreach(BookingSet b in cc)
+            foreach(BookingSet b in BookingList)
             {
                 foreach(FlightSet f in q)
                 {
@@ -83,16 +83,16 @@ namespace WebAPITuto.Controllers
         public async Task<List<Statistics>> GetStats([FromRoute] String Destination)
         {
             List<Statistics> stats = new List<Statistics>();
-           
-            var cc = await _context.BookingSet.ToListAsync();
-            var dd = await _context.FlightSet.ToListAsync();
-            var ee = await _context.PassengerSet.ToListAsync();
-            var q = from a in dd
+
+            var booklist = await _context.BookingSet.ToListAsync();
+            var flightlist = await _context.FlightSet.ToListAsync();
+            var passengerlist = await _context.PassengerSet.ToListAsync();
+            var q = from a in flightlist
                     where a.Destination.Equals(Destination)
                     select a;
 
             List<BookingSet> list = new List<BookingSet>();
-            foreach (BookingSet b in cc)
+            foreach (BookingSet b in booklist)
             {
                 foreach (FlightSet f in q)
                 {
@@ -102,25 +102,24 @@ namespace WebAPITuto.Controllers
                     }
                 }
             }
-            foreach(BookingSet miaou in list)
+            foreach (BookingSet bs in list)
             {
-                
+
                 Statistics s = new Statistics();
-                foreach(PassengerSet ouaf in ee)
+                foreach (PassengerSet ps in passengerlist)
                 {
-                     if(ouaf.PersonId == miaou.PassengerId)
+                    if (ps.PersonId == bs.PassengerId)
                     {
-                        s.GivenName = ouaf.GivenName;
-                       
+                        s.GivenName = ps.GivenName;
+
                     }
                 }
 
-                s.FlightNo = miaou.FlightNo;
-                s.Price = miaou.Price;
+                s.FlightNo = bs.FlightNo;
+                s.Price = bs.Price;
 
                 stats.Add(s);
             }
-           
             return stats;
         }
 
