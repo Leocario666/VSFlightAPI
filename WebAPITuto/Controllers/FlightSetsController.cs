@@ -104,6 +104,8 @@ namespace WebAPITuto.Controllers
         public async Task<ActionResult<FlightSet>> PostFlightSet(FlightSet flightSet)
         {
             flightSet.RemainingSeats -= 1;
+            FlightSet dbFlightSet = _context.FlightSet.Find(flightSet.FlightNo);
+            flightSet.Price = dbFlightSet.Price;
             _context.FlightSet.Update(flightSet);
             await _context.SaveChangesAsync();
 
